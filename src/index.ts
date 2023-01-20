@@ -6,40 +6,52 @@
  * @since   2020-01-01
  */
 
-import Truck from './Truck'
 import Bike from './Bike'
+import Truck from './Truck'
 
-const bmx = new Bike('Red', 40, 2)
+// new BMX Bike
+console.log('Created BMX Bike.')
+const bmxBike = new Bike(40, 'Red')
 
-console.log('Created Bmx bike.\nStatus:\n')
-bmx.status()
+console.log('Bike Status:')
+bmxBike.status()
 
-console.log('Set the cadence to 10\n')
-bmx.accel(10)
-bmx.status()
+console.log('Set the cadence to 10:')
+bmxBike.setCadence(10)
+bmxBike.accelerate(0)
+bmxBike.status()
 
-console.log('\nAccelerate by 15:')
-bmx.accel(15)
-bmx.status()
+console.log('Accelerate by 15:')
+bmxBike.accelerate(15)
+bmxBike.status()
 
-console.log('\nRing bell.')
-bmx.ringBell()
+console.log('Braking, 5 of power for 2 seconds:')
+bmxBike.braking(5, 2)
+bmxBike.status()
 
-const bigTruck = new Truck('HGC-3456F', 'Grey', 200, 4, 10)
+console.log('Ring Bell:')
+bmxBike.ringBell()
 
-console.log('Created a Truck.\nStatus:\n')
-bigTruck.status()
+console.log('')
 
-console.log('\nAccelerating, 10 of power for ten seconds:')
-bigTruck.accel(10, 10)
-console.log('New speed: ' + String(bigTruck.getSpeed()))
+// new Truck
+console.log('Created Truck.')
+const truck = new Truck(200, 'Grey')
+truck.setLicensePlate('HGC-3456F')
 
-console.log('\nBreaking, 10 of power for 10 sec.')
-bigTruck.accel(10, 10)
-console.log('New speed: ' + String(bigTruck.getSpeed()))
+console.log('Truck Status:')
+truck.status()
 
-console.log('\nApplyed air pressure of 10 and Power of 10 for 10s :')
-bigTruck.break(10, 10)
-console.log('New speed: ' + String(bigTruck.getSpeed()))
+console.log('Accelerating, 10 of power for 10 seconds:')
+truck.accelerate(10, 10)
+console.log(`\nNew speed (1): ${Number(truck.getSpeed())}\n`)
 
-console.log('\nDone.')
+console.log('Set tire Air Pressure to 5:')
+truck.setAirPressure(5)
+console.log(`\nNew Air Pressure: ${Number(truck.getAirPressure())}\n`)
+
+console.log('Braking, 10 of power for 2 seconds:')
+truck.braking(10, 2)
+console.log(`\nNew speed (2): ${Number(truck.getSpeed())}\n`)
+
+console.log('Done.')

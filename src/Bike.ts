@@ -8,28 +8,41 @@
 import Vehicle from './Vehicle'
 
 class Bike extends Vehicle {
+  // declare new field
   private cadence = 0
 
-  // status
+  // status method - prints all fields applied to bike object
   status(): void {
-    super.status()
-    console.log(`    → Cadence: ${this.cadence}`)
+    console.log(`
+      -> Speed: ${super.getSpeed()}
+      -> Max Speed: ${super.getMaxSpeed()}
+      -> Color: ${super.getColor()}
+      -> Cadence: ${this.getCadence()}
+    `)
   }
 
-  // getter cadence
+  // setCadence method - cadence setter
+  setCadence(cadenceInput: number): void {
+    this.cadence = cadenceInput
+  }
+
+  // getCadence method - cadence getter
   getCadence(): number {
     return this.cadence
   }
 
-  // method for acceleration
-  accel(appliedPower: number): void {
-    this.cadence = this.cadence + appliedPower
+  // accelerate method - accelerates the bike based on cadence
+  accelerate(appliedPower: number): void {
+    this.cadence += appliedPower
     super.setSpeed(this.cadence * 2)
+    if (super.getSpeed() > super.getMaxSpeed()) {
+      super.setSpeed(super.getMaxSpeed())
+    }
   }
 
-  // makes bel=l sound ding
+  // ringBell method - prints 'Ding Ding!'
   ringBell(): void {
-    console.log('Ding ding!\n')
+    console.log('Ding Ding!')
   }
 }
 

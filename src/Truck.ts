@@ -9,55 +9,46 @@
 import Vehicle from './Vehicle'
 
 class Truck extends Vehicle {
-  private licensePlate: string
-  private airPressure: number
+  // declare new field
+  private licensePlate = ''
+  private airPressure = 0
 
-  constructor(
-    licensePlate: string,
-    color: string,
-    maxSpeed: number,
-    numberTires: number,
-    airPressure: number
-  ) {
-    super(color, maxSpeed, numberTires)
-    this.licensePlate = licensePlate
-    this.airPressure = airPressure
-  }
-
-  // status
+  // status method - prints all fields applied to truck object
   status(): void {
-    super.status()
-    console.log(`    → LicensePlate: ${this.licensePlate}
-    → Number of tires: ${super.getTires()}`)
+    console.log(`
+      -> Speed: ${super.getSpeed()}
+      -> Max Speed: ${super.getMaxSpeed()}
+      -> Color: ${super.getColor()}
+      -> License Plate: ${this.licensePlate}
+      -> Air Pressure: ${this.airPressure}
+    `)
   }
 
-  // getter for licensPlate
+  // setLicensePlate method - licensePlate setter
+  setLicensePlate(licensePlateInput: string): void {
+    this.licensePlate = licensePlateInput
+  }
+
+  // getLicensePlate method - licensePlate getter
   getLicensePlate(): string {
     return this.licensePlate
   }
 
-  // setter for licence plate
-  setLicensePlate(newLicensePlate: string): void {
-    this.licensePlate = newLicensePlate
+  // setLicensePlate method - licensePlate setter
+  setAirPressure(airPressureInput: number): void {
+    this.airPressure = airPressureInput
   }
 
-  // getter for airPressure
+  // getLicensePlate method - licensePlate getter
   getAirPressure(): number {
     return this.airPressure
   }
 
-  // setter for airPressure
-  setAirPressure(airPressure: number): void {
-    this.airPressure = airPressure
-  }
-
-  // break method replacing airBrake
-  break(breakPower: number, breakTime: number): void {
+  // Braking method - add air pressure and braking parameters to reduces speed
+  braking(brakePower: number, brakeTime: number): void {
     super.setSpeed(
-      super.getSpeed() - breakPower * breakTime - this.airPressure * breakTime
+      super.getSpeed() - brakePower * brakeTime - this.airPressure * brakeTime
     )
-
-    // reality Check
     if (super.getSpeed() < 0) {
       super.setSpeed(0)
     }

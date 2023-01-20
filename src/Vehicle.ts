@@ -8,73 +8,54 @@
  */
 
 class Vehicle {
-  private color: string
-  private readonly maxSpeed: number
-  private readonly numberTires: number
+  // declares all variables
   private speed = 0
+  private readonly maxSpeed: number
+  private color: string
 
-  constructor(color: string, maxSpeed: number, numberTires: number) {
-    this.color = color
+  // Vehicle Constructor - allows index.ts to initialize values
+  constructor(maxSpeed: number, color: string) {
     this.maxSpeed = maxSpeed
-    this.numberTires = numberTires
+    this.color = color
   }
 
-  // status
-  status(): void {
-    console.log(
-      `    → Color: ${this.color}
-    → Max Speed: ${this.maxSpeed}
-    → Speed: ${this.speed}
-    → Number of tires: ${this.numberTires}`
-    )
-  }
-
-  // getter of color
+  // color Getter - returns current color value
   getColor(): string {
     return this.color
   }
 
-  // setter of color
-  setColor(newColor: string): void {
-    this.color = newColor
+  // color Setter - allows user to change color
+  setColor(colorInput: string): void {
+    this.color = colorInput
   }
 
-  // getter of speed
+  // speed getter - returns current speed value
   getSpeed(): number {
     return this.speed
   }
 
-  // setter of speed
-  setSpeed(newSpeed: number): void {
-    this.speed = newSpeed
+  // speed setter - needed to change speed from Bike.ts
+  setSpeed(speedInput: number): void {
+    this.speed = speedInput
   }
 
-  // getter of Max Speed
+  // maxSpeed getter - returns current doorCount value
   getMaxSpeed(): number {
     return this.maxSpeed
   }
 
-  // getter of tires
-  getTires(): number {
-    return this.numberTires
-  }
-
-  // method for acceleration
-  accel(accelPower: number, accelTime: number): void {
-    this.speed = accelPower * accelTime + this.speed
-
-    // reality check
-    if (this.speed > this.maxSpeed) {
+  // accelerate method - increases speed by power * time
+  accelerate(accelPower: number, accelTime: number): void {
+    this.speed += accelPower * accelTime
+    if (!(this.speed < this.maxSpeed)) {
       this.speed = this.maxSpeed
     }
   }
 
-  // method for breaking
-  break(breakPower: number, breakTime: number): void {
-    this.speed = this.speed - breakPower * breakTime
-
-    // reality check
-    if (this.speed < 0) {
+  // break method - decreases speed by power * time
+  braking(accelPower: number, accelTime: number): void {
+    this.speed -= accelPower * accelTime
+    if (!(this.speed >= 0)) {
       this.speed = 0
     }
   }
